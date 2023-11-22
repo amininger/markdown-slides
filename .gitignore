@@ -1,0 +1,7 @@
+
+# Vim Temp Files
+*.swp
+
+# Marp Output Files
+*.html
+*.pdf

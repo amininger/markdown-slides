@@ -3,28 +3,73 @@
 @size 16:10 1280px 800px
 */
 
-@import 'gaia'
+/** Extends the gaia theme **/
+@import 'gaia';
 
-@font-face { font-family: ZillaSlab; font-weight: thin; src: url('/home/aaron/workspace/python/amtools/res/fonts/ZillaSlab-Light.ttf'); }
-@font-face { font-family: ZillaSlab; font-weight: normal; src: url('/home/aaron/workspace/python/amtools/res/fonts/ZillaSlab-Regular.ttf'); }
-@font-face { font-family: ZillaSlab; font-weight: bold; src: url('/home/aaron/workspace/python/amtools/res/fonts/ZillaSlab-Bold.ttf'); }
-@font-face { font-family: ZillaSlab; font-weight: normal; font-style: italic; src: url('/home/aaron/workspace/python/amtools/res/fonts/ZillaSlab-Italic.ttf'); }
+/************************************ FONTS ********************************************
+ *
+ *	NOTE: You should replace the absolute path here to your personal markdown-slides dir 
+ *
+ ***************************************************************************************/
 
-@font-face { font-family: Jost; font-weight: normal; src: url('/home/aaron/workspace/python/amtools/res/fonts/Jost-Regular.ttf'); }
-@font-face { font-family: Jost; font-weight: bold; src: url('/home/aaron/workspace/python/amtools/res/fonts/Jost-Bold.ttf'); }
+@font-face { font-family: ZillaSlab; font-weight: thin; 
+	src: url('/home/aaron/workspace/tools/markdown-slides/fonts/ZillaSlab-Light.ttf'); 
+}
+@font-face { font-family: ZillaSlab; font-weight: normal; 
+	src: url('/home/aaron/workspace/tools/markdown-slides/fonts/ZillaSlab-Regular.ttf'); 
+}
+@font-face { font-family: ZillaSlab; font-weight: bold; 
+	src: url('/home/aaron/workspace/tools/markdown-slides/fonts/ZillaSlab-Bold.ttf'); 
+}
+@font-face { font-family: ZillaSlab; font-weight: normal; font-style: italic; 
+	src: url('/home/aaron/workspace/tools/markdown-slides/fonts/ZillaSlab-Italic.ttf'); 
+}
 
-:root {
+@font-face { font-family: Jost; font-weight: normal; 
+	src: url('/home/aaron/workspace/tools/markdown-slides/fonts/Jost-Regular.ttf'); 
+}
+@font-face { font-family: Jost; font-weight: bold; 
+	src: url('/home/aaron/workspace/tools/markdown-slides/fonts/Jost-Bold.ttf'); 
+}
+
+/************************************ IMAGES ********************************************
+ *
+ *	NOTE: You should replace the absolute path here to your personal markdown-slides dir 
+ *
+ ***************************************************************************************/
+section {
+	--ucbc_icon_url: url('/home/aaron/workspace/tools/markdown-slides/images/ucbc24.png');
+}
+
+/*************** GLOBAL THEME SETTINGS **************/
+
+section {
 	--WHITE: rgb(255, 255, 255);
+	--OFF_WHITE: rgb(240, 240, 255);
 	--DARK_GRAY: rgb(44, 44, 44);
 	--RUST: rgb(203, 77, 73);
 	--BLUE: #56A3A6;
 	--GREEN: #6BA368;
 	--GOLD: #F6AE2D;
 
-	--font-size: 36px;
-	--h2-size: 2em;
-	--h3-size: 1.5em;
-	--footer-size: 0.6em;
+	--theme_text: var(--DARK_GRAY);
+	--theme_text_inv: var(--WHITE);
+	--theme_text_accent: var(--GREEN);
+	--theme_background: var(--WHITE);
+	--theme_accent: var(--RUST);
+
+	--font_size: 36px;
+	--small_font_size: 30px;
+
+	--h1_size: 1.8rem;
+	--h2_size: 1.4rem;
+	--h3_size: 1.2rem;
+
+	--slide_padding: 40px;
+	--vspace_lg: 0.40rem;
+	--vspace_md: 0.25rem;
+	--vspace_sm: 0.15rem;
+	--footer_size: 0.6rem;
 
 	--font_text: Jost, Geneva, sans-serif;
 	--font_heading: ZillaSlab, Times, serif;
@@ -32,142 +77,112 @@
 	box-sizing: border-box;
 }
 
-/** Normal Theme **/
-:root {
-	--col_background: var(--WHITE);
-	--col_text: var(--DARK_GRAY);
-	--col_accent: var(--RUST);
-	--col_header: var(--RUST);
+/*************** COLORSCHEMES **************/
+
+/** Default Theme **/
+section {
+	--col_background: var(--theme_background);
+	--col_text: var(--theme_text);
+	--col_accent: var(--theme_accent);
+	--col_header: var(--theme_accent);
 }
 
-/** Inverted Theme **/
-:root.title, :root.transition {
-	--col_background: var(--RUST);
-	--col_text: var(--WHITE);
-	--col_accent: var(--DARK_GRAY);
-	--col_header: var(--RUST);
+/** Inverted: Title/Heading/Transition Theme **/
+section.title, section.heading, section.transition {
+	--col_background: var(--theme_accent);
+	--col_text: var(--theme_text_inv);
+	--col_accent: var(--theme_text);
 }
 
-:root.plain {
-	--col_background: var(--WHITE);
-	--col_text: var(--DARK_GRAY);
-	--col_accent: var(--RUST);
-	--col_header: var(--WHITE);
-}
-
-:root.small {
-	font-size: 30px;
-}
-
+/*************** DEFAULT STYLES ************/
 
 section {
 	margin: 0;
-	padding: 0 40px;
+	padding: 0 var(--slide_padding);
 
 	background-color: var(--col_background);
 	color: var(--col_text);
-	font-size: var(--font-size);
+	font-size: var(--font_size);
 	font-family: var(--font_text);
 }
 
-section.title, section.transition {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+section > * {
+	margin-top: 0;
+	margin-left: var(--slide_padding);
+	margin-right: var(--slide_padding);
+	margin-bottom: var(--vspace_sm);
 }
 
-section.title h1 {
-	font-size: 3em;
-	padding: 0;
-	margin: 0.2em 0;
-}
-section.title h2 {
-	font-size: 2em;
-	padding: 0;
-	margin: 0.2em 0;
-}
-section.title p {
-	text-align: center;
+h1,h2,h3,p,ul,ol,table,pre {
+	margin-top: 0;
 }
 
+/** The h1 is actually a full banner at the top **/
 h1 {
-	margin: 0 -40px 0.4em -40px;
-	padding: 0.3em 40px;
+	margin-left: calc(-1 * var(--slide_padding));
+	margin-right: calc(-1 * var(--slide_padding));
+	margin-bottom: var(--vspace_lg);
+	padding: calc(0.5 * var(--slide_padding)) var(--slide_padding);
 
 	background-color: var(--col_header);
-	color: var(--WHITE);
-	font-weight: thin;
-	font-size: 1.8em;
-}
-:root.plain h1 {
-	color: var(--col_text);
-	background-color: inherit;
-}
+	color: var(--theme_text_inv);
 
-section > * {
-	margin-left: 40px;
-	margin-right: 40px;
+	font-weight: thin;
+	font-size: var(--h1_size);
 }
 
 h1,h2,h3 {
 	font-family: var(--font_heading);
 }
 h2 {
-	font-size: 1.4em;
-	margin-top: 0.5em;
-	margin-bottom: 0.3em;
-}
-:root.condensed h2 {
-	margin-top: 0.2em;
-	margin-bottom: 0.1em;
+	font-size: var(--h2_size);
+	margin-bottom: var(--vspace_md);
 }
 h3 {
-	font-size: 1.2em;
-	margin-top: 0.4em;
-	margin-bottom: 0.2em;
+	font-size: var(--h3_size);
+	margin-bottom: var(--vspace_sm);
 }
-:root.condensed h3 {
-	margin-top: 0.15em;
-	margin-bottom: 0.1em;
-}
+
 h2 strong, h3 strong {
-	color: var(--GREEN);
+	color: var(--theme_text_accent);
 }
 
 p {
-	margin-top: 0.4em;
-	margin-bottom: 0.4em;
+	margin-bottom: var(--vspace_sm);
 	line-height: 1.6;
 }
-:root.condensed p {
-	margin-top: 0.1em;
-	margin-bottom: 0.1em;
+
+ul, ol {
+	font-size: 0.9rem;
+	margin-left: 0;
+}
+
+li {
+	margin: 0 0 var(--vspace_sm) 0;
+}
+
+table {
+	font-size: 0.8rem;
+}
+thead th {
+	font-family: var(--font_heading);
 }
 
 code {
-	font-size: 0.8em;
-	background-color: #E0E0FF;
+	font-size: 0.8rem;
+	background-color: var(--OFF_WHITE);
 	color: var(--col_text);
 }
 
 pre {
-	padding: 0.3em 0.5em;
-	background-color: #EEE;
-	font-size: 0.75em;
+	margin-bottom: var(--vspace_lg);
+	padding: 0.2rem 0.4rem;
 	border: 2px solid var(--col_accent);
-}
-
-section pre {
-	margin: 0.6em 0;
 	border-radius: 5px;
-	padding: 0.2em 0.8em;
-	font-size: 1.0em;
 
-	background:	#F0F0F0;
-}
-:root.condensed pre {
-	margin: 0.2em 0;
+	background-color: var(--OFF_WHITE);
+
+	font-size: 0.8rem;
 }
 
 section pre code {
@@ -175,6 +190,7 @@ section pre code {
 	color: #333;
 }
 
+/** Colors for syntax highlighting **/
 section pre span.hljs-keyword {
 	color: #A84030;
 }
@@ -198,31 +214,6 @@ section pre span.hljs-type {
 }
 
 
-ul, ol {
-	font-size: 0.9em;
-	margin-left: 0.5em;
-}
-
-:root.condensed ul, :root.condensed ol {
-	margin-top: 0.1em;
-	margin-bottom: 0.1em;
-}
-
-li {
-	margin: 0.25em 0;
-}
-:root.condensed li {
-	margin: 0.1em 0;
-}
-
-table {
-	font-size: 0.8em;
-}
-thead th {
-	font-family: var(--font_heading);
-}
-
-
 
 footer {
 	margin: 0;
@@ -230,113 +221,121 @@ footer {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 30px;
+	height: calc(1.4 * var(--footer_size));
 
 	background-color: var(--DARK_GRAY);
-	background-image: url('/home/aaron/workspace/python/amtools/res/ucbc24.png');
+	background-image: var(--ucbc_icon_url);
 	background-position: left 8px top 3px;
 	background-repeat: no-repeat;
 
 	padding: 0 0 6px 40px;
 
-	font-size: var(--footer-size);
+	font-size: var(--footer_size);
 	color: var(--WHITE);
 	line-height: 1.3em;
 }
-:root.title footer, :root.transition footer, :root.plain footer {
+
+
+
+
+/************************ EXTRA CLASSES **********************/
+
+/****** small - makes all the text on the slide a bit smaller *******/
+
+section.small {
+	font-size: calc(var(--font_size) * 0.8);
+}
+
+/****** condensed - shrinks margins/padding between items (fit more vertically) *******/
+section.condensed {
+	--vspace_lg: 0.20rem;
+	--vspace_md: 0.12rem;
+	--vspace_sm: 0.08rem;
+}
+section.condensed h1 {
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
+}
+section.condensed p {
+	line-height: 1.4;
+}
+
+
+/****** plain - solid background with no special header/footer *******/
+section.plain h1 {
+	color: inherit;
+	background-color: inherit;
+}
+
+section.plain footer {
 	display: none;
 }
 
-/***** THEME: TITLE ******/
-:root.title {
-	--col_background: var(--RUST);
-	--col_text: var(--WHITE);
-	--col_accent: var(--DARK_GRAY);
-	--col_header: var(--RUST);
-}
-section.title {
+/****** title/heading - inverted colors with the title centered in the middle ******/
+
+/* Center Vertically and Horizontally */
+section.title, section.heading, section.transition {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	font-size: calc(var(--font_size) * 1.25);
 }
-section.title h1 {
-	font-size: 2.5em;
-	padding: 0;
-	margin: 0.2em 0;
-}
-section.title h2 {
-	font-size: 2em;
-	padding: 0;
-	margin: 0.2em 0;
-}
-section.title :is(h1, h2, p) {
+
+section.title > *, 
+section.heading > *, 
+section.transition > * {
 	text-align: center;
 }
-section.title footer {
-	display: none;
-}
 
-/***** THEME: Transition ******/
-:root.transition {
-	--col_background: var(--RUST);
-	--col_text: var(--WHITE);
-	--col_accent: var(--DARK_GRAY);
-	--col_header: var(--RUST);
-}
-section.transition {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
+section.title h1, 
+section.heading h1, 
 section.transition h1 {
-	font-size: 2em;
 	padding: 0;
-	margin: 0.2em 0;
+	margin: 0 0 var(--vspace_lg) 0;
 }
-section.transition h2 {
-	font-size: 1.6em;
-	padding: 0;
-	margin: 0.2em 0;
-}
-section.transition p {
-	text-align: center;
-}
+
+/* No footer */
+section.title footer, 
+section.heading footer, 
 section.transition footer {
 	display: none;
 }
 
+
+/******** definition - centered box used to define a new term ********/
+
 section.definition {
-    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
-section.definition h1, section.definition h2, section.definition h3 {
-    width: 80%;
-    margin: 0;
-    padding: 20px 40px;
+section.definition h1 {
+	margin: 0 auto;
+	width: 80%;
+    padding: 20px var(--slide_padding);
     background-color: rgb(73, 77, 203);
 	color: #fff;
+	font-size: calc(0.75 * var(--h1_size));
 }
-section.definition h1::before, section.definition h2::before, section.definition h3::before   {
+section.definition h1::before {
     content: '🛈';
     margin-right: 10px;
     padding: 5px;
     font-weight: normal;
-    font-size: 0.8em;
 	color: #fff;
+	font-size: 0.8em;
 }
-section.definition p, section.definition ul, section.definition ol {
-    width: 80%;
-    margin: 0;
-    padding: 40px;
+section.definition p, section.definition ul, section.definition ol, section.definition pre {
+	margin: 0 auto;
+	width: 80%;
+    padding: calc(0.5 * var(--slide_padding)) var(--slide_padding);
     background-color: rgb(200, 210, 240);
-    font-size: 1.0em;
+	border: none;
+    font-size: 0.8rem;
 }
-section.definition.small p {
-	font-size: 0.9em;
+section.definition pre code {
+	background-color: rgb(255, 255, 255);
 }
